@@ -33,7 +33,7 @@ if selected then
 
 end
 
--- The following was to used to find the parameter name and index
+-- The following was used to find the parameter name and index
 -- reaper.TrackFX_GetParamName(selected, fxIndex, 15, "")
 -- {true, "Usemidi"}
 
