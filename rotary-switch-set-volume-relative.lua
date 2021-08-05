@@ -23,11 +23,7 @@ for i = 0,(countSelected - 1) do
 
     vol = reaper.GetMediaTrackInfo_Value(current, "D_VOL");
     db = VAL2DB(vol);
-    slider = math.floor(reaper.DB2SLIDER(db));
-
-    inc = getDirection() * 5;
-    slider = slider + getDirection() * 5;
-
+    slider = math.floor(reaper.DB2SLIDER(db)) + getDirection() * 5;
     slider = (slider < 0.0) and 0.0 or ((slider > 1000.0 and 1000.0 or slider));
     db = reaper.SLIDER2DB(slider);
     vol = DB2VAL(db);
