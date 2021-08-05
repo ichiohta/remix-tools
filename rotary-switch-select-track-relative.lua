@@ -14,15 +14,22 @@ direction = getDirection()
 tracks = reaper.CountTracks()
 current = reaper.GetSelectedTrack(0, 0);
 
-if (tracks > 0 and current) then
+if (tracks > 0) then
 
-  reaper.SetTrackSelected(current, false);
-  currentIndex = reaper.GetMediaTrackInfo_Value(current, "IP_TRACKNUMBER") - 1;
-  selectedIndex = (tracks + currentIndex + direction) % tracks;
+  if (current) then
+    reaper.SetTrackSelected(current, false);
+    currentIndex = reaper.GetMediaTrackInfo_Value(current, "IP_TRACKNUMBER") - 1;
+    selectedIndex = (tracks + currentIndex + direction) % tracks;
+  else
+    selectedIndex = (direction > 0) and 0 or (tracks - 1)
+  end
+
   selected = reaper.GetTrack(0, selectedIndex);
 
   if (selected) then
-    reaper.SetTrackSelected(current, false);
+    if (current) then
+        reaper.SetTrackSelected(current, false);
+    end
     reaper.SetTrackSelected(selected, true);
   end
   
