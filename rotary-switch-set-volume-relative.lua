@@ -15,9 +15,11 @@ function DB2VAL (x)
   return math.exp(x * math.log(10) / 20);
 end
 
-current = reaper.GetSelectedTrack(0, 0);
+countSelected = reaper.CountSelectedTracks(0);
 
-if (current) then
+for i = 0,(countSelected - 1) do
+
+    current = reaper.GetSelectedTrack(0, i);
 
     vol = reaper.GetMediaTrackInfo_Value(current, "D_VOL");
     db = VAL2DB(vol);
@@ -33,3 +35,4 @@ if (current) then
     reaper.SetMediaTrackInfo_Value(current, "D_VOL", vol);
 
 end
+
