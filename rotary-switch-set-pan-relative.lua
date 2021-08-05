@@ -1,3 +1,10 @@
+--
+-- Use rotary switch to adjust pan of the selected tracks.
+-- The rotary switch needs to be configured 'relative' mode,
+-- to send a value <= 64 when turned counter-clock wise,
+-- and a value > 64 when turned clock wise.
+--
+
 function getDirection ()
     is_new_value, filename, sectionID, cmdID, mode, resolution, val = reaper.get_action_context()
     return (val - 64 > 0) and 1 or -1
